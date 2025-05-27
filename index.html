@@ -189,7 +189,7 @@ END:VCARD
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'uddhav-bhandari.vcf';
+    a.download = 'Shikhar-kc.vcf';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -197,7 +197,7 @@ END:VCARD
   });
 
   const qr = new QRCode(document.getElementById("qrcode"), {
-    text: vcardData,
+    text: "https://kcshikhar906.github.io/SKC",
     width: 160,
     height: 160,
   });
