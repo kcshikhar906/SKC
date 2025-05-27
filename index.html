@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Digital Contact Card</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #000;
+      color: #fff;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    .container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 20px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: url('your-photo.jpg') center/cover no-repeat;
+      box-shadow: 0 0 12px rgba(255,255,255,0.4);
+      margin: 0 auto 20px;
+      animation: dropIn 1.5s ease-out forwards;
+    }
+    h1 {
+      margin: 10px 0 0;
+      font-size: 26px;
+      animation: slideUp 0.8s ease-out 1.2s forwards;
+    }
+    .tagline {
+      margin: 6px 0 20px;
+      font-size: 18px;
+      color: #aaa;
+      animation: changeTagline 10s infinite;
+    }
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .social-links a {
+      text-decoration: none;
+      background: linear-gradient(145deg, #0055aa, #00aaff);
+      color: white;
+      padding: 12px 18px;
+      border-radius: 8px;
+      min-width: 120px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeSlideUp 0.6s ease-out forwards;
+      transition: transform 0.3s, box-shadow 0.3s;
+      perspective: 800px;
+      box-shadow: 0 0 10px #00aaff;
+      font-size: 16px;
+    }
+    .social-links a:hover {
+      transform: rotateY(15deg) scale(1.05);
+      box-shadow: 0 0 20px #00f0ff;
+    }
+    .social-links a:nth-child(1) { animation-delay: 2.2s; }
+    .social-links a:nth-child(2) { animation-delay: 2.4s; }
+    .social-links a:nth-child(3) { animation-delay: 2.6s; }
+    .social-links a:nth-child(4) { animation-delay: 2.8s; }
+    .social-links a:nth-child(5) { animation-delay: 3.0s; }
+    .social-links a:nth-child(6) { animation-delay: 3.2s; }
+    .social-links a:nth-child(7) { animation-delay: 3.4s; }
+    .social-links a:nth-child(8) { animation-delay: 3.6s; }
+    .social-links a:nth-child(9) { animation-delay: 3.8s; }
+    .social-links a:nth-child(10) { animation-delay: 4.0s; }
+
+    @keyframes dropIn {
+      0% { transform: translateY(-50px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes slideUp {
+      0% { transform: translateY(20px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes fadeSlideUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @media (max-width: 600px) {
+      .social-links a {
+        flex: 1 1 40%;
+      }
+    }
+  </style>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Uddhav Bhandari Contact" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<link rel="apple-touch-icon" href="your-icon-192x192.png" />
+</head>
+<body>
+  <div id="particles-js"></div>
+  <div class="container">
+    <div class="profile-img"></div>
+    <h1>Your Full Name</h1>
+    <div class="tagline" id="tagline">Creative Thinker</div>
+    <div class="social-links">
+      <a href="https://wa.me/yournumber" target="_blank">📱 WhatsApp</a>
+      <a href="https://www.linkedin.com/in/yourprofile" target="_blank">💼 LinkedIn</a>
+      <a href="https://github.com/yourusername" target="_blank">👨‍💻 GitHub</a>
+      <a href="https://www.instagram.com/yourprofile" target="_blank">📸 Instagram</a>
+      <a href="https://twitter.com/yourhandle" target="_blank">🐦 Twitter</a>
+      <a href="mailto:youremail@example.com">✉️ Email</a>
+      <a href="https://yourportfolio.com" target="_blank">🌐 Portfolio</a>
+      <a href="https://www.facebook.com/yourprofile" target="_blank">📘 Facebook</a>
+      <a href="https://t.me/yourusername" target="_blank">📲 Telegram</a>
+      <a href="https://www.youtube.com/@yourchannel" target="_blank">📺 YouTube</a>
+      <a href="#" id="download-vcard" style="background:#28a745;">Download vCard</a>
+<div id="qrcode" style="margin: 20px auto; width: 160px;"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <script>
+    particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json');
+
+    const taglines = [
+      "Creative Thinker",
+      "Tech Enthusiast",
+      "Problem Solver",
+      "Visionary Developer"
+    ];
+    let index = 0;
+    setInterval(() => {
+      document.getElementById("tagline").innerText = taglines[index];
+      index = (index + 1) % taglines.length;
+    }, 3000);
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script>
+  const vcardData = `
+BEGIN:VCARD
+VERSION:3.0
+FN: SHIKHAR KC
+ORG:SKC
+TITLE:IT Support Engineer
+TEL;TYPE=WORK,VOICE:+61452476782
+EMAIL;TYPE=PREF,INTERNET:shikharkc63@gmail.com
+URL:https://shikharkc.com.np
+END:VCARD
+`.trim();
+
+  document.getElementById('download-vcard').addEventListener('click', function(e) {
+    e.preventDefault();
+    const blob = new Blob([vcardData], { type: 'text/vcard' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'uddhav-bhandari.vcf';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
+  const qr = new QRCode(document.getElementById("qrcode"), {
+    text: vcardData,
+    width: 160,
+    height: 160,
+  });
+</script>
+</body>
+</html>
