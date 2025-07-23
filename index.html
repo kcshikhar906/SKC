@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shikhar KC - Business Card</title>
+    <title>Professional Business Card</title>
     <style>
         * {
             margin: 0;
@@ -24,16 +24,18 @@
         .business-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 500px;
+            border-radius: 25px;
+            padding: 0;
+            max-width: 600px;
             width: 100%;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            text-align: center;
             position: relative;
             overflow: hidden;
             transition: transform 0.3s ease;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            min-height: 500px;
         }
 
         .business-card:hover {
@@ -58,80 +60,160 @@
             100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
         }
 
+        .left-panel {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+            position: relative;
+        }
+
+        .left-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            animation: shimmer 4s infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
         .profile-section {
             position: relative;
             z-index: 2;
-            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
         .profile-image {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            border: 4px solid rgba(255, 255, 255, 0.3);
+            width: 140px;
+            height: 140px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
             overflow: hidden;
             position: relative;
-            transition: transform 0.3s ease;
+            transition: all 0.4s ease;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
 
         .profile-image:hover {
-            transform: scale(1.05);
+            transform: scale(1.05) rotate(2deg);
+            border-radius: 50%;
         }
 
         .profile-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .profile-image:hover img {
+            transform: scale(1.1);
+        }
+
+        .right-panel {
+            padding: 40px 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-section {
+            margin-bottom: 25px;
         }
 
         .name {
-            font-size: 2.2em;
-            font-weight: 700;
+            font-size: 2.4em;
+            font-weight: 800;
             color: white;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 8px;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+            line-height: 1.1;
         }
 
         .title {
-            font-size: 1.2em;
+            font-size: 1.1em;
             color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 10px;
-            font-weight: 300;
+            margin-bottom: 15px;
+            font-weight: 400;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
         }
 
         .description {
-            font-size: 1em;
-            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95em;
+            color: rgba(255, 255, 255, 0.85);
             line-height: 1.6;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+            font-style: italic;
         }
 
         .contact-info {
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
         }
 
         .contact-item {
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
             color: rgba(255, 255, 255, 0.9);
-            font-size: 0.95em;
+            font-size: 0.85em;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 12px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
         }
 
         .contact-item svg {
-            width: 16px;
-            height: 16px;
-            margin-right: 10px;
+            width: 14px;
+            height: 14px;
+            margin-right: 8px;
             fill: currentColor;
+            opacity: 0.8;
+        }
+
+        .email-highlight {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            border: 1px solid rgba(102, 126, 234, 0.3);
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
+            gap: 12px;
+            margin-bottom: 25px;
             flex-wrap: wrap;
         }
 
@@ -139,34 +221,52 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
+            border-radius: 15px;
             text-decoration: none;
             color: white;
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .social-link:hover::before {
+            left: 100%;
         }
 
         .social-link:hover {
             background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
         .social-link svg {
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
+            z-index: 1;
         }
 
         .download-vcard {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             border: none;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-size: 1em;
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-size: 0.95em;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -177,27 +277,64 @@
             gap: 10px;
             margin: 0 auto;
             text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-vcard::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .download-vcard:hover::before {
+            left: 100%;
         }
 
         .download-vcard:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
             background: linear-gradient(135deg, #5a67d8, #6b46c1);
         }
 
         .download-vcard svg {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 700px) {
             .business-card {
-                padding: 30px 20px;
-                margin: 10px;
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                min-height: auto;
+            }
+            
+            .left-panel {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+                padding: 25px 20px;
+            }
+            
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .right-panel {
+                padding: 30px 25px;
             }
             
             .name {
-                font-size: 1.8em;
+                font-size: 2em;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
             }
             
             .social-links {
@@ -205,8 +342,8 @@
             }
             
             .social-link {
-                width: 45px;
-                height: 45px;
+                width: 42px;
+                height: 42px;
             }
         }
     </style>
@@ -215,7 +352,7 @@
     <div class="business-card">
         <div class="profile-section">
             <div class="profile-image">
-                <img src="https://shikharkc.com.np/images/shikhar.jpg" alt="Profile Picture" id="profileImg">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face" alt="Profile Picture" id="profileImg">
             </div>
             
             <h1 class="name" id="fullName">Shikhar KC</h1>
@@ -233,9 +370,23 @@
             
             <div class="contact-item">
                 <svg viewBox="0 0 24 24">
-                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                    <path d="M9 11H7v4h2v-4zm4 0h-2v4h2v-4zm4 0h-2v4h2v-4zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
                 </svg>
-                <span id="phone">+61 452476782</span>
+                <span id="experience">2+ Years Experience</span>
+            </div>
+            
+            <div class="contact-item">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+                <span id="specialization">AI-Powered Support Solutions</span>
+            </div>
+            
+            <div class="contact-item">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                <span id="certifications">CompTIA A+, Azure AI, Google IT</span>
             </div>
             
             <div class="contact-item">
@@ -253,31 +404,37 @@
                 </svg>
             </a>
             
-            <a href="https://www.linkedin.com/in/shikharkc6/" class="social-link" title="LinkedIn" id="linkedinLink">
+            <a href="https://www.linkedin.com/in/shikharkc184/" class="social-link" title="LinkedIn" id="linkedinLink">
                 <svg viewBox="0 0 24 24">
                     <path fill="currentColor" d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77Z"/>
                 </svg>
             </a>
             
-            <a href="https://www.youtube.com/@ShikharKC" class="social-link" title="YouTube" id="youtubeLink">
+            <a href="https://www.youtube.com/@ShikharKC" class="social-link" title="YouTube Tech Tutorials" id="youtubeLink">
                 <svg viewBox="0 0 24 24">
                     <path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                 </svg>
             </a>
             
-            <a href="https://shikharkc.com.np/" class="social-link" title="Portfolio" id="portfolioLink">
+            <a href="https://shikharkc.com.np/" class="social-link" title="Portfolio & AI Projects" id="portfolioLink">
                 <svg viewBox="0 0 24 24">
                     <path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                 </svg>
             </a>
             
-            <!-- <a href="https://twitter.com/johndoe" class="social-link" title="Twitter" id="twitterLink">
+            <a href="https://wa.me/15551234567" class="social-link" title="WhatsApp Support" id="whatsappLink" target="_blank">
                 <svg viewBox="0 0 24 24">
-                    <path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23z"/>
+                    <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.051 3.488z"/>
                 </svg>
-            </a> -->
+            </a>
             
-            <a href="https://www.instagram.com/kcshikhar/#" class="social-link" title="Instagram" id="instagramLink">
+            <a href="mailto:contact@shikharkc.com.np?subject=IT Support Inquiry&body=Hi Alex, I need help with..." class="social-link" title="Direct Email" id="emailDirectLink">
+                <svg viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M20 8l-8 5-8-5V6l8 5 8-5m0-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z"/>
+                </svg>
+            </a>
+            
+            <a href="https://www.instagram.com/kcshikhar/#" class="social-link" title="Tech Tips & Behind the Scenes" id="instagramLink">
                 <svg viewBox="0 0 24 24">
                     <path fill="currentColor" d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3z"/>
                 </svg>
@@ -296,19 +453,23 @@
         // Personal information object (customize this with your details)
         const personalInfo = {
             fullName: "Shikhar KC",
-            jobTitle: "IT Support Specialist",
-            bio: "Passionate developer creating innovative solutions with modern technologies. Let's build something amazing together!",
+            jobTitle: "IT Support Specialist & AI Solutions Expert",
+            bio: "Bridging technology gaps with intelligent solutions. Specializing in AI-powered troubleshooting, system optimization, and user empowerment through cutting-edge tech support.",
             email: "contact@shikharkc.com.np",
             phone: "+61 452476782",
             location: "Sydney, Australia",
+            experience: "2+ Years Experience",
+            specialization: "AI-Powered Support Solutions",
+            certifications: "Google IT Support, Azure AI Fundamentals",
             profileImage: "https://shikharkc.com.np/images/shikhar.jpg",
             links: {
                 github: "https://github.com/kcshikhar906",
                 linkedin: "https://www.linkedin.com/in/shikharkc184/",
                 youtube: "https://www.youtube.com/@ShikharKC",
                 portfolio: "https://shikharkc.com.np/",
-                // twitter: "https://twitter.com/johndoe",
-                instagram: "https://www.instagram.com/kcshikhar/#"
+                instagram: "https://www.instagram.com/kcshikhar/#",
+                whatsapp: "+61452476782",
+                email_direct: "contact@shikharkc.com.np"
             }
         };
 
@@ -318,7 +479,9 @@
             document.getElementById('jobTitle').textContent = personalInfo.jobTitle;
             document.getElementById('bio').textContent = personalInfo.bio;
             document.getElementById('email').textContent = personalInfo.email;
-            document.getElementById('phone').textContent = personalInfo.phone;
+            document.getElementById('experience').textContent = personalInfo.experience;
+            document.getElementById('specialization').textContent = personalInfo.specialization;
+            document.getElementById('certifications').textContent = personalInfo.certifications;
             document.getElementById('location').textContent = personalInfo.location;
             document.getElementById('profileImg').src = personalInfo.profileImage;
             
@@ -327,7 +490,8 @@
             document.getElementById('linkedinLink').href = personalInfo.links.linkedin;
             document.getElementById('youtubeLink').href = personalInfo.links.youtube;
             document.getElementById('portfolioLink').href = personalInfo.links.portfolio;
-            document.getElementById('twitterLink').href = personalInfo.links.twitter;
+            document.getElementById('whatsappLink').href = `https://wa.me/${personalInfo.links.whatsapp.replace(/[^0-9]/g, '')}`;
+            document.getElementById('emailDirectLink').href = `mailto:${personalInfo.links.email_direct}?subject=IT Support Inquiry&body=Hi ${personalInfo.fullName.split(' ')[0]}, I need help with...`;
             document.getElementById('instagramLink').href = personalInfo.links.instagram;
         }
 
